@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
 const Register = () => {
     const [districts,setDistricts] =useState([]);
     const [upazillas,setUpazillas] = useState([]);
+    const {createUser} = useAuth();
 
     useEffect(()=>{
         fetch('/public/District.json')
@@ -24,6 +26,10 @@ const Register = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data.email,data.password)
+    .then(result=>{
+        console.log(result.user)
+    })
   };
   return (
     <div>
