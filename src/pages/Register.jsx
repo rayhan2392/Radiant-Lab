@@ -77,7 +77,7 @@ const Register = () => {
               <select  {...register("blood-group",{required:true})} className="select w-full ">
                 
                 <option disabled selected >
-                  Blood Group*
+                 Select Blood Group*
                 </option>
                 <option value='A+'>A+</option>
                 <option value='A-'>A-</option>
@@ -91,7 +91,7 @@ const Register = () => {
             </div>
             <div>
             <select {...register('district')} className="select w-full" >
-                <option disabled selected>District*</option>
+                <option disabled selected>Select District*</option>
                {
                 districts.map(district=>  <option key={district.id} value={district.name}>{district.name}</option>)
                }
@@ -99,7 +99,7 @@ const Register = () => {
           </div>
           <div>
             <select {...register('upazilla')} className="select w-full"  >
-                <option disabled selected>Upazilla*</option>
+                <option disabled selected>Select Upazilla*</option>
                {
                 upazillas.map(upazilla=>  <option key={upazilla.id} value={upazilla.name}>{upazilla.name}</option>)
                }
