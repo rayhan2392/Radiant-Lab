@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 const Register = () => {
     const [districts,setDistricts] =useState([]);
     const [upazillas,setUpazillas] = useState([]);
@@ -33,7 +34,7 @@ const Register = () => {
   };
   return (
     <div>
-      <div className="bg-[#E7D9EA] md:p-10 md:w-3/4 mx-auto">
+      <div className="bg-[#E7D9EA] md:p-10 md:w-3/4 mx-auto rounded-xl">
         <h1 className="text-center font-bold text-3xl">
           Sign Up to Radiant Lab
         </h1>
@@ -129,7 +130,9 @@ const Register = () => {
           </div>
           
           <br />
-          <button  className="btn btn-block bg-[#19456B] text-white">Submit</button>
+          <button  className="btn btn-block bg-[#19456B] text-white">Register</button>
+          <p className="text-center mt-3">Already have an account? <Link to='/login' ><span className="font-bold">Log In</span></Link> </p>
+
         </form>
       </div>
     </div>
