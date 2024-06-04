@@ -1,13 +1,21 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+    const {logInUser}=useAuth();
   const {
     register,
     handleSubmit,
     // formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data)
+    logInUser(data.email,data.password)
+    .then(result=>{
+        console.log(result.user)
+    })
+};
 
   return (
     <div>
@@ -28,6 +36,7 @@ const Login = () => {
             <label>
               Password
               <input
+              type="password"
                 className="input input-bordered  w-full"
                 {...register("password",{ required: true })}
               />

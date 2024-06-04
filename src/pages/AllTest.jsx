@@ -1,5 +1,8 @@
 import img1 from "../assets/images/BloodCount.jpg";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 const AllTest = () => {
+   const axiosPublic = useAxiosPublic();
+  //  const {data:tests=[]}=use
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div className="md:p-5 p-2 rounded-xl bg-[#6A8CAF] ">

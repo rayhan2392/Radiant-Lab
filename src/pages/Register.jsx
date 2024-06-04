@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Register = () => {
     const [districts,setDistricts] =useState([]);
     const [upazillas,setUpazillas] = useState([]);
-    const {createUser} = useAuth();
+    const {createUser,updateUserProfile} = useAuth();
 
     useEffect(()=>{
         fetch('/public/District.json')
@@ -29,7 +29,8 @@ const Register = () => {
     console.log(data);
     createUser(data.email,data.password)
     .then(result=>{
-        console.log(result.user)
+       const loggedUser = result.user;
+      console.log(loggedUser)
     })
   };
   return (
