@@ -1,8 +1,17 @@
 import img1 from "../assets/images/BloodCount.jpg";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+
 const AllTest = () => {
-   const axiosPublic = useAxiosPublic();
-  //  const {data:tests=[]}=use
+  //  const axiosPublic = useAxiosPublic();
+  //  const {data:tests=[]}=useQuery({
+  //   queryKey:['test'],
+  //   queryFn:async()=>{
+  //       const res = await axiosPublic.get('/allTests')
+  //       return res.data
+  //   }
+  //  })
+  // console.log(tests)
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       <div className="md:p-5 p-2 rounded-xl bg-[#6A8CAF] ">
