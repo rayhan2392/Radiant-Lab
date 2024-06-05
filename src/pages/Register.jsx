@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 const Register = () => {
+    const axiosPublic = useAxiosPublic();
     const [districts,setDistricts] =useState([]);
     const [upazillas,setUpazillas] = useState([]);
-    const {createUser,updateUserProfile} = useAuth();
+    const {createUser} = useAuth();
 
     useEffect(()=>{
         fetch('/public/District.json')
@@ -26,11 +29,29 @@ const Register = () => {
 
 
   const onSubmit = (data) => {
+    const {name,email,image,bloodGroup,district,upazilla}= data;
+    const userInfo = {name:name,email:email,image:image,bloodGroup:bloodGroup,district:district,upazilla:upazilla}
+    console.log(userInfo);
+    console.log(bloodGroup,district,upazilla)
     console.log(data);
     createUser(data.email,data.password)
     .then(result=>{
        const loggedUser = result.user;
-      console.log(loggedUser)
+      if(loggedUser){
+        axiosPublic.post('/users',userInfo)
+        .then(res=>{
+          console.log(res.data)
+          if(res.data.insertedId){
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Registration successful",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+        })
+      }
     })
   };
   return (
@@ -75,7 +96,7 @@ const Register = () => {
               </label>
             </div>
             <div>
-              <select  {...register("blood-group",{required:true})} className="select w-full ">
+              <select  {...register("bloodGroup",{required:true})} className="select w-full ">
                 
                 <option disabled selected >
                  Select Blood Group*
