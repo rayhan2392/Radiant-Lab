@@ -12,7 +12,7 @@ const Dashboard = () => {
                     <NavLink to='/dashboard/userHome'> User Home </NavLink>
                   </li>
                   <li>
-                    <NavLink> My Profile </NavLink>
+                    <NavLink to='/dashboard/userProfile' > My Profile </NavLink>
                   </li>
                   <li>
                     <NavLink> Upcoming Appointments </NavLink>
@@ -20,6 +20,11 @@ const Dashboard = () => {
                   <li>
                     <NavLink> Test Results </NavLink>
                   </li>
+                </ul>
+                {/* Have access both user and admin */}
+                <hr />
+                <ul className="menu space-y-5">
+                  <NavLink className='text-xl font-bold' to='/'>Home</NavLink>
                 </ul>
             </div>
            <div className="flex-1 ml-10 p-8">
