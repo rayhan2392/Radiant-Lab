@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 const Register = () => {
+    const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const [districts,setDistricts] =useState([]);
     const [upazillas,setUpazillas] = useState([]);
@@ -39,6 +40,7 @@ const Register = () => {
         .then(res=>{
           console.log(res.data)
           if(res.data.insertedId){
+
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -46,6 +48,7 @@ const Register = () => {
               showConfirmButton: false,
               timer: 1500
             });
+         navigate('/dashboard')
           }
         })
       }
