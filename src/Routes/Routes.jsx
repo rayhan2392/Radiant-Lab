@@ -9,6 +9,7 @@ import UserHome from "../pages/dashboard/UserHome";
 import MyProfile from "../pages/dashboard/MyProfile";
 import PrivateRoute from "./PrivateRoute";
 import TestDetails from "../pages/TestDetails";
+import AllUsers from "../pages/dashboard/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +52,12 @@ export const router = createBrowserRouter([
           path:'userProfile',
           element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
           loader:()=>fetch('http://localhost:5000/users')
+        },
+
+        //admin only routes
+        {
+          path:'allUser',
+          element:<AllUsers></AllUsers>
         }
       ]
     }

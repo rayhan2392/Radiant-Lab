@@ -2,12 +2,24 @@ import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
 
 const Dashboard = () => {
+  const isAdmin = true
     return (
         <div className="flex">
             <div className="md:w-64 w-10 bg-[#80B9AD] min-h-screen p-6">
                 <h1 className="font-bold text-3xl">Radiant Lab</h1>
+
                 {/*this portion will be executed if the user is regular  */}
+               {
+                isAdmin?
+                <>
                 <ul className="menu space-y-5">
+                   <li>
+                     <NavLink to='/dashboard/allUser' > All users </NavLink>
+                   </li>
+                </ul>
+                </>:
+                <>
+                 <ul className="menu space-y-5">
                   <li>
                     <NavLink to='/dashboard/userHome'> User Home </NavLink>
                   </li>
@@ -21,6 +33,11 @@ const Dashboard = () => {
                     <NavLink> Test Results </NavLink>
                   </li>
                 </ul>
+                </>
+               }
+
+
+
                 {/* Have access both user and admin */}
                 <hr />
                 <ul className="menu space-y-5">
