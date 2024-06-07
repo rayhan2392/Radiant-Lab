@@ -8,6 +8,7 @@ import Dashboard from "../Layout/Dashboard";
 import UserHome from "../pages/dashboard/UserHome";
 import MyProfile from "../pages/dashboard/MyProfile";
 import PrivateRoute from "./PrivateRoute";
+import TestDetails from "../pages/TestDetails";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
         {
             path:'/allTests',
             element:<AllTest></AllTest>
+        },
+        {
+          path:'/testDetails',
+          element:<TestDetails></TestDetails>
         }
       ]
     },
