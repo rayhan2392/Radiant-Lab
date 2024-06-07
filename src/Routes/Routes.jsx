@@ -7,6 +7,7 @@ import AllTest from "../pages/AllTest";
 import Dashboard from "../Layout/Dashboard";
 import UserHome from "../pages/dashboard/UserHome";
 import MyProfile from "../pages/dashboard/MyProfile";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -42,7 +43,8 @@ export const router = createBrowserRouter([
         },
         {
           path:'userProfile',
-          element:<MyProfile></MyProfile>
+          element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
+          loader:()=>fetch('http://localhost:5000/users')
         }
       ]
     }
