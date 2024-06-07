@@ -32,8 +32,9 @@ export const router = createBrowserRouter([
             element:<AllTest></AllTest>
         },
         {
-          path:'/testDetails',
-          element:<TestDetails></TestDetails>
+          path:'/testDetails/:id',
+          element:<TestDetails></TestDetails>,
+          loader:({params})=>fetch(`http://localhost:5000/allTests/${params.id}`)
         }
       ]
     },

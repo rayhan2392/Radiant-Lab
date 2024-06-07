@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../hooks/useAxiosPublic";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AllTest = () => {
-  const [allTests,setAllTests]=useState([]);
   const axiosPublic = useAxiosPublic();
   const {data:tests=[],isPending,refetch}=useQuery({
     queryKey:['tests'],
@@ -16,14 +14,11 @@ const AllTest = () => {
   })
   refetch();
 
-  console.log(tests)
+ if(isPending){
+  return <div><span className="loading loading-spinner loading-lg"></span></div>
+ }
 
-  // useEffect(()=>{
-  //   axiosPublic.get('/allTests')
-  //   .then(res=>{
-  //     setAllTests(res.data)
-  //   })
-  // },[axiosPublic])
+  
   
  
   return (
@@ -35,14 +30,14 @@ const AllTest = () => {
         <img className="rounded-xl w-[300px] h-[200px] " src={test.image} alt="" />
       </div>
       <div className="text-[#E7D9EA]">
-        <h1 className="font-bold text-2xl text-center">Complete Blood Count (CBC)</h1>
-        <p> <span className="font-bold text-xl">Slots</span>: <span className="text-white text-xl">30</span> </p>
-        <p><span className="font-bold text-xl ">Date</span> : <span className="text-white text-xl">24-11-2024</span></p>
-        <p>
+        <h1 className="font-bold text-2xl text-center">{test.name} </h1>
+        <p> <span className="font-bold text-xl">Slots</span>: <span className="text-white text-xl"> {test.slots} </span> </p>
+        <p><span className="font-bold text-xl ">Date</span> : <span className="text-white text-xl"> {test.date} </span></p>
+        {/* <p>
           A comprehensive test to analyze the components of your
           blood and detect various disorders.{" "}
-        </p>
-       <Link to='/testDetails'>
+        </p> */}
+       <Link to={`/testDetails/${test._id}`}>
        <button className="btn mt-3 text-xl w-full">Details</button>
        </Link>
       </div>

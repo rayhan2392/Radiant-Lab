@@ -31,7 +31,7 @@ const Register = () => {
 
   const onSubmit = (data) => {
     const {name,email,image,bloodGroup,district,upazilla}= data;
-    const userInfo = {name:name,email:email,image:image,bloodGroup:bloodGroup,district:district,upazilla:upazilla}
+    const userInfo = {name:name,email:email,image:image,bloodGroup:bloodGroup,district:district,upazilla:upazilla,status:'active'}
     createUser(data.email,data.password)
     .then(result=>{
        const loggedUser = result.user;
