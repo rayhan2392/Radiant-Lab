@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import img1 from "../assets/images/BloodCount.jpg";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -10,27 +9,28 @@ const AllTest = () => {
   const {data:tests=[],isPending,refetch}=useQuery({
     queryKey:['tests'],
     queryFn:async()=>{
-     const res = axiosPublic.get('/allTests')
+     const res =await axiosPublic.get('/allTests')
      return res.data;
      
     }
   })
+  refetch();
 
   console.log(tests)
 
-  useEffect(()=>{
-    axiosPublic.get('/allTests')
-    .then(res=>{
-      setAllTests(res.data)
-    })
-  },[axiosPublic])
-  console.log(allTests)
+  // useEffect(()=>{
+  //   axiosPublic.get('/allTests')
+  //   .then(res=>{
+  //     setAllTests(res.data)
+  //   })
+  // },[axiosPublic])
+  
  
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
      {
-      allTests.map(test=> <div key={test._id} className="md:p-5 p-2 rounded-xl bg-[#6A8CAF] ">
+      tests.map(test=> <div key={test._id} className="md:p-5 p-2 rounded-xl bg-[#6A8CAF] ">
       <div>
         <img className="rounded-xl w-[300px] h-[200px] " src={test.image} alt="" />
       </div>
