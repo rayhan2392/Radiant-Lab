@@ -12,6 +12,7 @@ import TestDetails from "../pages/TestDetails";
 import AllUsers from "../pages/dashboard/AllUsers";
 import AddTest from "../pages/dashboard/AddTest";
 import AllTests from "../pages/dashboard/AllTests";
+import UpdateTest from "../pages/dashboard/UpdateTest";
 
 export const router = createBrowserRouter([
     {
@@ -68,6 +69,11 @@ export const router = createBrowserRouter([
         {
           path:'allTest',
           element:<AllTests></AllTests>
+        },
+        {
+          path:'updateTest/:id',
+          element:<UpdateTest></UpdateTest>,
+          loader:({params})=>fetch(`http://localhost:5000/allTests/${params.id}`)
         }
       ]
     }

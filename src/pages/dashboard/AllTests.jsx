@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AiFillDelete } from "react-icons/ai";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllTests = () => {
     const axiosPublic = useAxiosPublic();
@@ -15,6 +16,12 @@ const AllTests = () => {
      
     }
   })
+
+  if(isPending){
+    return(
+        <div><span className="loading loading-spinner loading-lg"></span></div>
+    )
+  }
 
   const handleDeleteTest = (test)=>{
     Swal.fire({
@@ -47,8 +54,8 @@ const AllTests = () => {
   }
  
   return (
-    <div>
-      <h1 className="text-3xl text-center">All Tests</h1>
+    <div className="mt-5">
+      <h1 className="text-3xl text-center font-bold">All Tests: {tests.length} </h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -65,9 +72,11 @@ const AllTests = () => {
            {
             tests.map(test=> <tr key={test._id}>
                 <th>{test.test_name} </th>
-                <td>{test.slots} </td>
+                <td className="text-xl font-bold">{test.slots} </td>
                 <td>
-                   <button className="btn  bg-[#80B9AD] text-white"> Update</button>
+                   <Link to={`/dashboard/updateTest/${test._id}`}>
+                     <button className="btn  bg-[#80B9AD] text-white"> Update</button>
+                   </Link>
                 </td>
                 <td>
                    <button onClick={()=>handleDeleteTest(test)} className="btn"> <AiFillDelete className="text-xl text-red-500"></AiFillDelete> </button>
