@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import TestDetails from "../pages/TestDetails";
 import AllUsers from "../pages/dashboard/AllUsers";
 import AddTest from "../pages/dashboard/AddTest";
+import AllTests from "../pages/dashboard/AllTests";
 
 export const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
         {
           path:'addTest',
           element:<AddTest></AddTest>
+        },
+        {
+          path:'allTest',
+          element:<AllTests></AllTests>
         }
       ]
     }

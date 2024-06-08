@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const AllTest = () => {
   const axiosPublic = useAxiosPublic();
-  const {data:tests=[],isPending,refetch}=useQuery({
+  const {data:tests=[],isPending}=useQuery({
     queryKey:['tests'],
     queryFn:async()=>{
      const res =await axiosPublic.get('/allTests')
@@ -12,7 +12,7 @@ const AllTest = () => {
      
     }
   })
-  refetch();
+ 
 
  if(isPending){
   return <div><span className="loading loading-spinner loading-lg"></span></div>

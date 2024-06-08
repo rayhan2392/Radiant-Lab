@@ -19,6 +19,9 @@ const Dashboard = () => {
                    <li>
                      <NavLink to='/dashboard/addTest' > Add New Test </NavLink>
                    </li>
+                   <li>
+                     <NavLink to='/dashboard/allTest' > All Tests </NavLink>
+                   </li>
                 </ul>
                 </>:
                 <>
