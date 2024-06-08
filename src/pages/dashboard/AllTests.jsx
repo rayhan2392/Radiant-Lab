@@ -1,10 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { AiFillDelete } from "react-icons/ai";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AllTests = () => {
     const axiosPublic = useAxiosPublic();
-  const {data:tests=[],isPending}=useQuery({
+    const axiosSecure = useAxiosSecure();
+  const {data:tests=[],isPending,refetch}=useQuery({
     queryKey:['tests'],
     queryFn:async()=>{
      const res =await axiosPublic.get('/allTests')
@@ -12,6 +15,36 @@ const AllTests = () => {
      
     }
   })
+
+  const handleDeleteTest = (test)=>{
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You want to delete?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            axiosSecure.delete(`/allTests/${test._id}`)
+            .then(res=>{
+                if(res.data.deletedCount>0){
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Test deleted successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                refetch();
+                }
+               
+            })
+        }
+      });
+   
+  }
  
   return (
     <div>
@@ -37,7 +70,7 @@ const AllTests = () => {
                    <button className="btn  bg-[#80B9AD] text-white"> Update</button>
                 </td>
                 <td>
-                   <button className="btn "> <AiFillDelete className="text-xl text-red-500"></AiFillDelete> </button>
+                   <button onClick={()=>handleDeleteTest(test)} className="btn"> <AiFillDelete className="text-xl text-red-500"></AiFillDelete> </button>
                 </td>
               </tr>)
            }
