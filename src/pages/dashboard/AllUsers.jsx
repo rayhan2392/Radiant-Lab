@@ -1,16 +1,59 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [] } = useQuery({
+  const { data: users = [],refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
-  console.log(users);
+  // console.log(users);
+  //block an user 
+  const handleBlockUser=(user)=>{
+    if(user.status==='blocked'){
+      return (
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "User is already blocked",
+          
+        })
+      );
+    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You want to block ${user.name}`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/${user._id}`)
+    .then(res=>{
+      console.log(res.data)
+     if(res.data.modifiedCount>0){
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: `${user.name} has been blocked`,
+        showConfirmButton: false,
+        timer: 1500
+      });
+      refetch();
+     }
+      
+    })
+      }
+    });
+   
+   
+  }
  
   return (
     <div className="md:mt-10 ">
@@ -69,9 +112,11 @@ const AllUsers = () => {
                   </dialog>
                 </td>
                 <td>
-                  <button className="btn btn-xs">Make Admin</button>
+                  <button  className="btn btn-xs">Make Admin</button>
                 </td>
-                <td>{user?.status}</td>
+                <td>
+                  <button onClick={()=>handleBlockUser(user)} className={`${user.status==='blocked'? 'disabled':''} btn btn-xs`}>{user?.status}</button>
+                </td>
                 <td>
                   <button className="btn btn-xs">Download</button>
                 </td>
