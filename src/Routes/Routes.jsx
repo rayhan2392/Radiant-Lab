@@ -15,6 +15,7 @@ import AllTests from "../pages/dashboard/AllTests";
 import UpdateTest from "../pages/dashboard/UpdateTest";
 import AddBanner from "../pages/dashboard/AddBanner";
 import AllBanner from "../pages/dashboard/AllBanner";
+import Payment from "../pages/dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
           element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
           loader:()=>fetch('http://localhost:5000/users')
         },
+       {
+        path:'payment',
+        element:<Payment></Payment>
+       },
 
         //admin only routes
         {

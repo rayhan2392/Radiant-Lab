@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const TestDetails = () => {
     const {user}=useAuth()
@@ -35,7 +36,9 @@ const TestDetails = () => {
                  <p className="text-2xl font-bold ">Price : ${test.price} </p>
                  <p className="text-xl font-bold">Available Slots : {test.slots} </p>
                  <p className="text-xl"> {test.details} </p>
-                 <button onClick={handleBookTest} className="btn btn-block">Book Now</button>
+                <Link to='/dashboard/payment'>
+                   <button onClick={handleBookTest} className="btn btn-block">Book Now</button>
+                </Link>
             </div>
         </div>
     );
