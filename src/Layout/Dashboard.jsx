@@ -22,6 +22,12 @@ const Dashboard = () => {
                    <li>
                      <NavLink to='/dashboard/allTest' > All Tests </NavLink>
                    </li>
+                   <li>
+                     <NavLink to='/dashboard/addBanner' > Add Banner </NavLink>
+                   </li>
+                   <li>
+                     <NavLink to='/dashboard/allBanner' > All Banner </NavLink>
+                   </li>
                 </ul>
                 </>:
                 <>
