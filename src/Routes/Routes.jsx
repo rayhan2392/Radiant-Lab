@@ -10,6 +10,7 @@ import MyProfile from "../pages/dashboard/MyProfile";
 import PrivateRoute from "./PrivateRoute";
 import TestDetails from "../pages/TestDetails";
 import AllUsers from "../pages/dashboard/AllUsers";
+import AddTest from "../pages/dashboard/AddTest";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
         {
           path:'allUser',
           element:<AllUsers></AllUsers>
+        },
+        {
+          path:'addTest',
+          element:<AddTest></AddTest>
         }
       ]
     }

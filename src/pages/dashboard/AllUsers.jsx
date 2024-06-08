@@ -162,7 +162,7 @@ const AllUsers = () => {
                   }
                 </td>
                 <td>
-                  <button onClick={()=>handleBlockUser(user)} className={`${user.status==='blocked'? 'disabled':''} btn btn-xs`}>{user?.status}</button>
+                  <button onClick={()=>handleBlockUser(user)} className='btn btn-xs'>{user?.status}</button>
                 </td>
                 <td>
                   <button className="btn btn-xs">Download</button>

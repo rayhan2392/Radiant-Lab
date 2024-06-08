@@ -8,13 +8,16 @@ const Dashboard = () => {
             <div className="md:w-64 w-10 bg-[#80B9AD] min-h-screen p-6">
                 <h1 className="font-bold text-3xl">Radiant Lab</h1>
 
-                {/*this portion will be executed if the user is regular  */}
+                {/*this portion will be executed if the users rule is admin  */}
                {
                 isAdmin?
                 <>
-                <ul className="menu space-y-5">
+                <ul className="menu space-y-2">
                    <li>
                      <NavLink to='/dashboard/allUser' > All users </NavLink>
+                   </li>
+                   <li>
+                     <NavLink to='/dashboard/addTest' > Add New Test </NavLink>
                    </li>
                 </ul>
                 </>:
