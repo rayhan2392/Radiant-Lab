@@ -3,12 +3,9 @@ import { useLoaderData } from "react-router";
 
 const MyProfile = () => {       
   const {user}=useAuth();
-  console.log(user)
   const users = useLoaderData();
-  console.log(users)
   
  const currentUser = users.find(data=>data.email===user.email);
-console.log(currentUser.name)
    
   return (
     <div className=" ">

@@ -2,20 +2,25 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 
-// const img = 'https://i.ibb.co/D7Jx6Q7/kae-ng-jy-Ncew0-Nf-W0-unsplash-1.jpg'
+
 const Banner = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: banners = [] } = useQuery({
+  const { data: banners = [],isPending,refetch } = useQuery({
     queryKey: ["banners"],
     queryFn: async () => {
       const res = await axiosSecure.get("/banners");
       return res.data;
     },
   });
+  if(isPending){
+    refetch()
+    return <span className="loading loading-spinner text-error"></span>
 
+  }
+  console.log(banners)
   const selectedBanner = banners.find((banner) => banner.isActive === true);
   console.log(selectedBanner);
-
+ 
   return (
     <div
       className="hero  h-[500px] space-y-4"
