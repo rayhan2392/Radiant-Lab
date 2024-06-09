@@ -47,6 +47,16 @@ const AllBanner = () => {
             axiosSecure.delete(`/banners/${banner._id}`)
             .then(res=>{
                 console.log(res.data)
+                if(res.data.deletedCount>0){
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Banner deleted successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  refetch();
+                }
                
             })
         //   Swal.fire({
