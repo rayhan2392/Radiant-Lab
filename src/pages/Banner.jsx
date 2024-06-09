@@ -1,25 +1,48 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 // const img = 'https://i.ibb.co/D7Jx6Q7/kae-ng-jy-Ncew0-Nf-W0-unsplash-1.jpg'
 const Banner = () => {
+  const axiosSecure = useAxiosSecure();
+  const { data: banners = [] } = useQuery({
+    queryKey: ["banners"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/banners");
+      return res.data;
+    },
+  });
+
+  const selectedBanner = banners.find((banner) => banner.isActive === true);
+  console.log(selectedBanner);
 
   return (
     <div
       className="hero  h-[500px] space-y-4"
       style={{
-        backgroundImage:
-          "url(https://i.ibb.co/D7Jx6Q7/kae-ng-jy-Ncew0-Nf-W0-unsplash-1.jpg)",
+        backgroundImage: `url(${selectedBanner.image})`,
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-md">
-          <h1 className="mb-2 text-[#C5FF95]  text-4xl font-bold">Exclusive Offer!!!</h1>
+          <h1 className="mb-2 text-[#C5FF95]  text-4xl font-bold">
+            {selectedBanner.title}!!!
+          </h1>
           <p className="mb-5 font-bold text-[#5DEBD7]">
-           New users get an exclusive discount. <br /> Join us today!
+            {selectedBanner.description} <br /> Join us today!
           </p>
-          <p className="text-2xl font-bold text-[#C5FF95]">Use Coupon Code <span className="text-[#40A578]">NEWUSER25</span> to get</p>
-          <h1 className="text-3xl font-bold ">25% off</h1>
-          <button className="btn bg-[#9DDE8B]  mt-4">All Test</button>
+          <p className="text-2xl font-bold text-[#C5FF95]">
+            Use Coupon Code{" "}
+            <span className="text-[#40A578]">{selectedBanner.coupon}</span> to
+            get
+          </p>
+          <h1 className="text-3xl font-bold ">{selectedBanner.rate} off</h1>
+         <Link to='/allTests'>
+         <button className="btn bg-[#9DDE8B] border-none text-white  mt-4">
+            All Test
+          </button>
+         </Link>
         </div>
       </div>
     </div>
