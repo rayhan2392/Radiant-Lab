@@ -20,6 +20,7 @@ import UpcomingAppointments from "../pages/dashboard/UpcomingAppointments";
 import Reservations from "../pages/dashboard/Payment/Reservations";
 import SubmitTest from "../pages/dashboard/SubmitTest";
 import TestResults from "../pages/dashboard/TestResults";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -44,14 +45,14 @@ export const router = createBrowserRouter([
         },
         {
           path:'/testDetails/:id',
-          element:<TestDetails></TestDetails>,
+          element:<PrivateRoute><TestDetails></TestDetails></PrivateRoute>,
           loader:({params})=>fetch(`http://localhost:5000/allTests/${params.id}`)
         }
       ]
     },
     {
       path:'dashboard',
-      element:<Dashboard></Dashboard>,
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute> ,
       children:[
         //user routes
         {
@@ -75,7 +76,7 @@ export const router = createBrowserRouter([
         //admin only routes
         {
           path:'allUser',
-          element:<AllUsers></AllUsers>
+          element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
         },
         {
           path:'addTest',
