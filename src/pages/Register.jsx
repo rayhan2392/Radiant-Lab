@@ -10,14 +10,24 @@ const Register = () => {
     const [districts,setDistricts] =useState([]);
     const [upazillas,setUpazillas] = useState([]);
     const {createUser} = useAuth();
+    console.log(districts);
+
+    // axios.get('http://localhost:5000/districts')
+    // .then(res=>{
+    //   console.log(res.data)
+    //   setDistricts(res.data)
+    // })
+    
 
     useEffect(()=>{
-        fetch('/public/District.json')
+        fetch('District.json')
         .then(res=>res.json())
         .then(data=>setDistricts(data))
     },[]);
+
+
     useEffect(()=>{
-        fetch('/public/Upazilla.json')
+        fetch('/Upazilla.json')
         .then(res=>res.json())
         .then(data=>setUpazillas(data))
     },[])
