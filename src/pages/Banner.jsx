@@ -17,9 +17,7 @@ const Banner = () => {
     return <span className="loading loading-spinner text-error"></span>
 
   }
-  console.log(banners)
   const selectedBanner = banners.find((banner) => banner.isActive === true);
-  console.log(selectedBanner);
  
   return (
     <div

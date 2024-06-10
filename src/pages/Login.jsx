@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  const navigate = useNavigate();
     const {logInUser}=useAuth();
   const {
     register,
@@ -14,6 +15,9 @@ const Login = () => {
     logInUser(data.email,data.password)
     .then(result=>{
         console.log(result.user)
+        if(result.user){
+          navigate('/dashboard')
+        }
     })
 };
 

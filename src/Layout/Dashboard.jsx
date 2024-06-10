@@ -1,8 +1,13 @@
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true
+  
+  
+  const [isAdmin] = useAdmin();
+  console.log(isAdmin)
+
     return (
         <div className="flex">
             <div className="md:w-64 w-10 bg-[#80B9AD] min-h-screen p-6">
@@ -28,6 +33,9 @@ const Dashboard = () => {
                    <li>
                      <NavLink to='/dashboard/allBanner' > All Banner </NavLink>
                    </li>
+                   <li>
+                     <NavLink to='/dashboard/reservation' > Reservations </NavLink>
+                   </li>
                 </ul>
                 </>:
                 <>
@@ -42,7 +50,7 @@ const Dashboard = () => {
                     <NavLink to='/dashboard/upcomingAppointments' > Upcoming Appointments </NavLink>
                   </li>
                   <li>
-                    <NavLink> Test Results </NavLink>
+                    <NavLink to='/dashboard/testResult'> Test Results </NavLink>
                   </li>
                 </ul>
                 </>

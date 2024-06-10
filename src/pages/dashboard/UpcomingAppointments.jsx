@@ -13,7 +13,7 @@ const UpcomingAppointments = () => {
           return res.data;
         }
     })
-  const myBookings = bookings.filter(data=>data.email===user.email)
+  const myBookings = bookings.filter(data=>data?.email===user?.email && data?.status==='pending')
 
   const handleCancelBooking=(booking)=>{
     Swal.fire({

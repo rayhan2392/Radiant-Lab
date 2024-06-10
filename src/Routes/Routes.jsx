@@ -17,6 +17,9 @@ import AddBanner from "../pages/dashboard/AddBanner";
 import AllBanner from "../pages/dashboard/AllBanner";
 import Payment from "../pages/dashboard/Payment/Payment";
 import UpcomingAppointments from "../pages/dashboard/UpcomingAppointments";
+import Reservations from "../pages/dashboard/Payment/Reservations";
+import SubmitTest from "../pages/dashboard/SubmitTest";
+import TestResults from "../pages/dashboard/TestResults";
 
 export const router = createBrowserRouter([
     {
@@ -94,6 +97,19 @@ export const router = createBrowserRouter([
         {
           path:'allBanner',
           element:<AllBanner></AllBanner>
+        },
+        {
+          path:'reservation',
+          element:<Reservations></Reservations>
+        },
+        {
+          path:'submitTest/:id',
+          element:<SubmitTest></SubmitTest>,
+          loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
+        },
+        {
+          path:'testResult',
+          element:<TestResults></TestResults>
         }
       ]
     }

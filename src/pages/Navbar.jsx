@@ -14,7 +14,9 @@ const Navbar = () => {
      
       {
         user?
-         ''  :
+         <li>
+          <NavLink to='/dashboard' >Dashboard</NavLink>
+         </li>  :
         <li>
           <NavLink to='/register' > Register </NavLink>
         </li>
@@ -24,7 +26,7 @@ const Navbar = () => {
 
     const handleLogOut =()=>{
       logOutUser()
-      .then(result=>console.log(result.user))
+      .then(result=>console.log(result?.user))
       .catch(error=>console.error(error))
     }
   
