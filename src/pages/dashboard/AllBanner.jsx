@@ -18,9 +18,8 @@ const AllBanner = () => {
   });
 
   const handleSelectBanner = (banner) => {
-    console.log(banner._id);
     axiosSecure.patch(`/banners/${banner._id}`).then((res) => {
-      console.log(res.data);
+      console.log(res.data)
       refetch();
       if (isPending) {
         return (

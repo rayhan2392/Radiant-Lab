@@ -19,7 +19,6 @@ const AddBanner = () => {
         }
        axiosSecure.post('/banners',bannerInfo)
        .then(res=>{
-        console.log(res.data)
         if(res.data.insertedId){
             Swal.fire({
                 position: "top-end",

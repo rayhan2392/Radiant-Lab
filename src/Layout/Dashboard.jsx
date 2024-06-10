@@ -6,7 +6,6 @@ const Dashboard = () => {
   
   
   const [isAdmin] = useAdmin();
-  console.log(isAdmin)
 
     return (
         <div className="flex">

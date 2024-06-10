@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
         {
           path:'/testDetails/:id',
           element:<PrivateRoute><TestDetails></TestDetails></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/allTests/${params.id}`)
+          loader:({params})=>fetch(`https://radinat-lab-server.vercel.app/allTests/${params.id}`)
         }
       ]
     },
@@ -62,7 +62,7 @@ export const router = createBrowserRouter([
         {
           path:'userProfile',
           element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
-          loader:()=>fetch('http://localhost:5000/users')
+          loader:()=>fetch('https://radinat-lab-server.vercel.app/users')
         },
         {
           path:'upcomingAppointments',
@@ -89,7 +89,7 @@ export const router = createBrowserRouter([
         {
           path:'updateTest/:id',
           element:<UpdateTest></UpdateTest>,
-          loader:({params})=>fetch(`http://localhost:5000/allTests/${params.id}`)
+          loader:({params})=>fetch(`https://radinat-lab-server.vercel.app/${params.id}`)
         },
         {
           path:'addBanner',
@@ -106,7 +106,7 @@ export const router = createBrowserRouter([
         {
           path:'submitTest/:id',
           element:<SubmitTest></SubmitTest>,
-          loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
+          loader:({params})=>fetch(`https://radinat-lab-server.vercel.app/${params.id}`)
         },
         {
           path:'testResult',

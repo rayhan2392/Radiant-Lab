@@ -38,7 +38,6 @@ const Register = () => {
       if(loggedUser){
         axiosPublic.post('/users',userInfo)
         .then(res=>{
-          console.log(res.data)
           if(res.data.insertedId){
 
             Swal.fire({

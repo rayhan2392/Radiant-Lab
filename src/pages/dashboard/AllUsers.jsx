@@ -12,7 +12,6 @@ const AllUsers = () => {
       return res.data;
     },
   });
-  // console.log(users);
   //block an user 
   const handleBlockUser=(user)=>{
     if(user.status==='blocked'){

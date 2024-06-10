@@ -11,10 +11,8 @@ const Login = () => {
     // formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
     logInUser(data.email,data.password)
     .then(result=>{
-        console.log(result.user)
         if(result.user){
           navigate('/dashboard')
         }

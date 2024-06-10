@@ -9,18 +9,18 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
     const {user}= useAuth();
     const axiosSecure = useAxiosSecure();
-    const { data: users = [] } = useQuery({
+    const { data: users = [],isPending} = useQuery({
       queryKey: ["users"],
       queryFn: async () => {
         const res = await axiosSecure.get("/users");
         return res.data;
       },
     });
-  console.log(users)
   const currentUser = users.find(data=>data?.email===user?.email);
 
-   console.log(currentUser)
-    console.log(user)
+   if(isPending){
+    return <span className="loading loading-spinner text-error"></span>
+   }
     if(currentUser?.status==='active'){
         return children;
     }

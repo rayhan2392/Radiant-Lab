@@ -6,7 +6,6 @@ const SubmitTest = () => {
     const axiosSecure = useAxiosSecure();
     const test = useLoaderData();
     const navigate = useNavigate()
-    console.log(test)
     const handleSubmitTest=(e)=>{
         e.preventDefault();
         const reportInfo={
@@ -15,7 +14,6 @@ const SubmitTest = () => {
         }
         axiosSecure.patch(`/bookings/${test._id}`,reportInfo)
         .then(res=>{
-            console.log(res.data)
             if(res.data.modifiedCount>0){
                 Swal.fire({
                     position: "top-end",
