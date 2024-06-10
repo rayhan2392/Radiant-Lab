@@ -35,6 +35,9 @@ const Dashboard = () => {
                    <li>
                      <NavLink to='/dashboard/reservation' > Reservations </NavLink>
                    </li>
+                   <li>
+                     <NavLink to='/dashboard/stat' > Stats </NavLink>
+                   </li>
                 </ul>
                 </>:
                 <>

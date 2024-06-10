@@ -9,13 +9,14 @@ const PrivateRoute = ({children}) => {
     const location = useLocation();
     const {user}= useAuth();
     const axiosSecure = useAxiosSecure();
-    const { data: users = [],isPending} = useQuery({
+    const { data: users = [],isPending,refetch} = useQuery({
       queryKey: ["users"],
       queryFn: async () => {
         const res = await axiosSecure.get("/users");
         return res.data;
       },
     });
+    refetch();
   const currentUser = users.find(data=>data?.email===user?.email);
 
    if(isPending){

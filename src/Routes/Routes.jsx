@@ -21,6 +21,7 @@ import Reservations from "../pages/dashboard/Payment/Reservations";
 import SubmitTest from "../pages/dashboard/SubmitTest";
 import TestResults from "../pages/dashboard/TestResults";
 import AdminRoute from "./AdminRoute";
+import Stat from "../pages/dashboard/Stat";
 
 export const router = createBrowserRouter([
     {
@@ -111,6 +112,10 @@ export const router = createBrowserRouter([
         {
           path:'testResult',
           element:<TestResults></TestResults>
+        },
+        {
+          path:'stat',
+          element:<Stat></Stat>
         }
       ]
     }
